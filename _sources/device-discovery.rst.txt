@@ -6,5 +6,11 @@
 Device Discovery with SYCL
 ==========================
 
+This example is based on :cite:`intel_device_discovery_with_sycl` and illustrates
+how to use SYCL backend API to identify and query the information regarding the
+devices available for computing.
+A backend exposes one or more *platforms* (a platform is a collection of devices
+managed by a single backend).
+
 .. doxygenfile:: src/00-device-discovery.cpp 
    :project: sycl-examples
