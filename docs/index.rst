@@ -14,7 +14,7 @@ SYCL implementations extend the concepts found in these backends and enable
 their use through modern C++ with *SYCL backend API*.
 The SYCL specification defines the behavior that all SYCL implementations must
 provide to users.
-A function object that can execute on a device exposed by a *SYCL backend API*
+A function object that can execute on a device exposed by a SYCL backend API
 is called a *SYCL kernel function* :cite:`sycl2020`.
 
 .. toctree::

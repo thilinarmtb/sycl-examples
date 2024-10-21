@@ -6,7 +6,6 @@
 Device Discovery with SYCL
 ==========================
 
-This example is based on :cite:`intel_device_discovery_with_sycl`.
-
-.. doxygenfile:: src/00-device-discovery.cpp 
+.. doxygenpage:: page_device_discovery
    :project: sycl-examples
+   :content-only:

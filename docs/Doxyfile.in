@@ -18,3 +18,6 @@ MACRO_EXPANSION        = YES
 SEARCH_INCLUDES        = YES
 EXPAND_ONLY_PREDEF     = NO
 PREDEFINED             = __attribute__(x)=
+SOURCE_BROWSER         = YES
+EXAMPLE_PATH           = "@CMAKE_SOURCE_DIR@/src"
+CITE_BIB_FILES         = "@CMAKE_SOURCE_DIR@/docs/references.bib"
