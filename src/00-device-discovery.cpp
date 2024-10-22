@@ -60,23 +60,23 @@ int main(void) {
  * We add the following line add the beginning of the source file to use the
  * `sycl::` namespace implicitly and reduce the amount of typing we have
  * to do:
- * \snippet 00-device-discovery.cpp using_namespace_sycl
+ * \snippet{trimleft} 00-device-discovery.cpp using_namespace_sycl
  *
  * `platform::get_platforms()` function returns a `std::vector` containing all
  * the available SYCL platforms in the system (host).
  * We first iterate through all the entries in that vector using the following
  * line:
- * \snippet 00-device-discovery.cpp iterate_through_platforms
+ * \snippet{trimleft} 00-device-discovery.cpp iterate_through_platforms
  * We then query and print name, vendor, backend and version for each platform:
- * \snippet 00-device-discovery.cpp print_platform_info
+ * \snippet{trimleft} 00-device-discovery.cpp print_platform_info
  *
  * Then we iterate through all the devices in the current platform using
  * the `std::vector` returned from `platform.get_devices()` function:
- * \snippet 00-device-discovery.cpp iterate_through_devices
+ * \snippet{trimleft} 00-device-discovery.cpp iterate_through_devices
  * Similar to the platforms, we then print name, vendor, max compute
  * units, max work dimensions and maximum work items supported in each
  * dimension.
- * \snippet 00-device-discovery.cpp print_device_info
+ * \snippet{trimleft} 00-device-discovery.cpp print_device_info
  *
  * Below is an example output of the above example running on a single node
  * of Aurora supercomputer at Argonne National Laboratory (ANL):
