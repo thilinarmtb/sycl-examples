@@ -1,6 +1,8 @@
 #include <iostream>
 
+//! [include_sycl]
 #include <sycl/sycl.hpp>
+//! [include_sycl]
 
 //! [using_namespace_sycl]
 using namespace sycl;
@@ -54,8 +56,11 @@ int main(void) {
  * Full source code of the example is shown below:
  * \include 00-device-discovery.cpp
  *
- * We add the following line add the beginning of the source file to use the
- * `sycl::` namespace implicitly and reduce the amount of typing we have
+ * We start by including the `sycl` header file which provides definition of
+ * the SYCL backend API.
+ * \snippet{trimleft} 00-device-discovery.cpp include_sycl
+ * We then add the following line add the beginning of the source file to use
+ * the `sycl::` namespace implicitly and reduce the amount of typing we have
  * to do:
  * \snippet{trimleft} 00-device-discovery.cpp using_namespace_sycl
  *
