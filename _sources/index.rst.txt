@@ -22,7 +22,6 @@ is called a *SYCL kernel function* :cite:`sycl_2020`.
    :maxdepth: 3
    :caption: Table of Contents
 
-   self
    device-discovery
    vector-init
 
