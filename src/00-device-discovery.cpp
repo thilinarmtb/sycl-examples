@@ -81,12 +81,12 @@ int main(void) {
  * Below is an example output of the above example running on a single node
  * of Aurora supercomputer at Argonne National Laboratory (ANL):
  * \verbatim
- * Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, backend = level_zero, version = 1.3
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- *\endverbatim
+   Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, backend = level_zero, version = 1.3
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+ \endverbatim
  */
