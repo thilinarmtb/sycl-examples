@@ -78,14 +78,14 @@
 <h1>Device Discovery with SYCL<a class="headerlink" href="#device-discovery-with-sycl" title="Link to this heading"></a></h1>
 <div class="docutils container">
 <dd><p>This example is based on <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/technical/device-discovery-with-sycl.html">Intel device discovery with SYCL </a> tutorial and illustrates how to use SYCL backend API to identify and query the information regarding the devices available for computing. A backend exposes one or more <em>platforms</em> (a platform is a collection of devices managed by a single backend).</p>
-<p>We add the following line to use the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code> namespace and reduce the amount of typing we have to do: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">sycl</span><span class="p">;</span>
+<p>We add the following line to use the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code> namespace implicitly and reduce the amount of typing we have to do: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">sycl</span><span class="p">;</span>
 </pre></div>
 </div>
 </p>
-<p>In the following line, we iterate through all the platforms: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">platform</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">platform</span><span class="o">::</span><span class="n">get_platforms</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<p>We first iterate through all the platforms available in the system using the following line: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">platform</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">platform</span><span class="o">::</span><span class="n">get_platforms</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
-</p>
+ The above function returns a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> containing the available SYCL platforms. </p>
 </dd></div>
 </section>
 
