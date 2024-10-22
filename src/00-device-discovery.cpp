@@ -50,18 +50,16 @@ int main(void) {
  * \page page_device_discovery Device discovery with SYCL
  *
  * This example illustrates how to use SYCL backend API to identify and query
- * the information regarding the devices available for computing.
- * A backend exposes one or more *platforms* (a platform is a collection of
- * devices managed by a single backend).
+ * information regarding the devices available for computing.
  * Full source code of the example is shown below:
  * \include 00-device-discovery.cpp
  *
  * We start by including the `sycl` header file which provides definition of
  * the SYCL backend API.
  * \snippet{trimleft} 00-device-discovery.cpp include_sycl
- * We then add the following line add the beginning of the source file to use
+ * We then add the following line at the beginning of the source file to use
  * the `sycl::` namespace implicitly and reduce the amount of typing we have
- * to do:
+ * to do bt avoiding the `sycl::` namespace prefix:
  * \snippet{trimleft} 00-device-discovery.cpp using_namespace_sycl
  *
  * `platform::get_platforms()` function returns a `std::vector` containing all
