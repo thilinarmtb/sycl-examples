@@ -120,7 +120,10 @@
 </pre></div>
 </div>
 </p>
-<p>We add the following line add the beginning of the source file to use the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code> namespace implicitly and reduce the amount of typing we have to do: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">sycl</span><span class="p">;</span>
+<p>We start by including the <code class="docutils literal notranslate"><span class="pre">sycl</span></code> header file which provides definition of the SYCL backend API. <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sycl/sycl.hpp&gt;</span>
+</pre></div>
+</div>
+ We then add the following line add the beginning of the source file to use the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code> namespace implicitly and reduce the amount of typing we have to do: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">sycl</span><span class="p">;</span>
 </pre></div>
 </div>
 </p>
