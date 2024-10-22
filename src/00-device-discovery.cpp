@@ -47,11 +47,8 @@ int main(void) {
 /**
  * \page page_device_discovery Device discovery with SYCL
  *
- * This example is based on
- * <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/device-discovery-with-sycl.html">
- * Intel device discovery with SYCL </a> tutorial and illustrates how to use
- * SYCL backend API to identify and query the information regarding the devices
- * available for computing.
+ * This example illustrates how to use SYCL backend API to identify and query
+ * the information regarding the devices available for computing.
  * A backend exposes one or more *platforms* (a platform is a collection of
  * devices managed by a single backend).
  * Full source code of the example is shown below:
