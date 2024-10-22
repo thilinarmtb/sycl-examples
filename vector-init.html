@@ -119,11 +119,12 @@ Some of the information related to memory management in SYCL are from
 <p>Since we are initializing a vector using a SYCL kernel, we need to manage memory on both the host and the device (including transfers between the two where necessary). There are three different abstractions to perform memory managements in SYCL:<ul class="simple">
 <li><p>unified shared memory:</p></li>
 <li><p>buffer and accessor API</p></li>
-<li><p>images In this example, we will use SYCL buffers and accessors for memory management. Buffers provide views into already allocated memory and they do not own the memory they are associated with. We create a SYCL buffer associated with vector <code class="docutils literal notranslate"><span class="pre">v</span></code> in the following line: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">buffer</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">buf_v</span><span class="p">{</span><span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()}};</span>
+<li><p>images</p></li>
+</ul>
+</p>
+<p>In this example, we will use SYCL buffers and accessors for memory management. Buffers provide views into already allocated memory and they do not own the memory they are associated with. We create a SYCL buffer associated with vector <code class="docutils literal notranslate"><span class="pre">v</span></code> in the following line: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">buffer</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">buf_v</span><span class="p">{</span><span class="n">v</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()}};</span>
 </pre></div>
 </div>
-</p></li>
-</ul>
 </p>
 <p>Then we create a SYCL queue to execute SYCL command groups on a SYCL device: <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">queue</span><span class="w"> </span><span class="n">q</span><span class="p">;</span>
 </pre></div>
