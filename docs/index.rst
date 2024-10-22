@@ -23,5 +23,6 @@ is called a *SYCL kernel function* :cite:`sycl_2020`.
 
    self
    device-discovery
+   vector-init
 
 .. bibliography::
