@@ -5,23 +5,43 @@ Welcome to SYCL Examples' documentation !
 
 SYCL is a royalty-free, cross-platform, generic C++ programming model for
 heterogeneous computing :cite:`sycl_2020`.
-SYCL is built on parallel APIs such as OpenCL :cite:`khronos_opencl_registry`,
-CUDA :cite:`nvidia_cuda_guide`, and HIP :cite:`amd_hip_guide` which are commonly
-used for programming GPUs/CPUs and other accelerators (which we refer to as
-*devices* going forward).
-These underlying parallel APIs are denoted as *backends* in SYCL.
-SYCL implementations extend the concepts found in these backends and enable
-their use through modern C++ with *SYCL backend API*.
-The SYCL specification defines the behavior that all SYCL implementations must
-provide to users.
-A function object that can execute on a device exposed by a SYCL backend API
-is called a *SYCL kernel function* :cite:`sycl_2020`.
+A *SYCL application* is a C++ application which uses the SYCL programming
+model and run on a host system (usually a CPU).
+SYCL is built on top of parallel programming models such as OpenCL
+:cite:`khronos_opencl_registry`, CUDA :cite:`nvidia_cuda_guide`, and HIP
+:cite:`amd_hip_guide` which are used for programming GPUs.
+These programming models are exposed as *SYCL backends* in a SYCL
+implementation :cite:`sycl_2020`.
+SYCL backend implementations extend the concepts found in these programming
+models and enable their use in modern C++ with *SYCL backend API*.
+
+A *SYCL device* is an abstraction of a piece of hardware that can be used by
+a SYCL application :cite:`sycl_2020`.
+A function that can execute on a SYCL device exposed by a SYCL backend API is
+called a *SYCL kernel function* :cite:`sycl_2020`.
+A *SYCL platform*: a collection of SYCL devices managed by a single SYCL
+backend :cite:`sycl_2020`.
+A *SYCL context* encapsulates the runtime data structures and states required
+by a SYCL backend API to interact with SYCL devices associated with a given
+SYCL platform.
+A *SYCL runtime* is an implementation of the SYCL API specification which
+can be used to manage SYCL platforms, devices and contexts as well as handling
+data/memory management on the host and the SYCL backend :cite:`sycl_2020`.
+*SYCL accessors* are used for data/memory management in a SYCL application.
+
+A *SYCL application scope* starts with the construction of the first SYCL
+runtime instance in the SYCL application and finishes with the destruction
+of the last one.
+A SYCL application scope could contain one or more *SYCL command group scopes*.
+A SYCL command group scope is defined as a unit of work which is comprised of
+a SYCL kernel function (also known as *SYCL kernel scope*) and SYCL accessors.
+A *SYCL command queue* (or simply a *SYCL queue*) is an abstraction that is
+used to execute SYCL command groups using a SYCL runtime on a SYCL device.
 
 .. toctree::
    :maxdepth: 3
    :caption: Table of Contents
 
-   self
    device-discovery
    vector-init
 
