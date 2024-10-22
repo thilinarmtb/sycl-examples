@@ -43,12 +43,12 @@ int main(void) {
   return 0;
 }
 
+// clang-format off
 /**
  * \page page_device_discovery Device discovery with SYCL
  *
  * This example is based on
- * <a
- href="https://www.intel.com/content/www/us/en/developer/articles/technical/device-discovery-with-sycl.html">
+ * <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/device-discovery-with-sycl.html">
  * Intel device discovery with SYCL </a> tutorial and illustrates how to use
  * SYCL backend API to identify and query the information regarding the devices
  * available for computing.
@@ -81,27 +81,12 @@ int main(void) {
  * Below is an example output of the above example running on a single node
  * of Aurora supercomputer at Argonne National Laboratory (ANL):
  * \verbatim
- * (sycl-examples-dev) thilina@x4418c5s1b0n0:~/sycl-examples>
- ./install/bin/00-device-discovery
- * Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, backend
- = level_zero, version = 1.3
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R)
- Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024,
- 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R)
- Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024,
- 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R)
- Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024,
- 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R)
- Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024,
- 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R)
- Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024,
- 1024>
- *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R)
- Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024,
- 1024>
+ * Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, backend = level_zero, version = 1.3
+ *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+ *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+ *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+ *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+ *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
+ *         Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
  *\endverbatim
  */
