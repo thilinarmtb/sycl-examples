@@ -3,7 +3,7 @@
 .. toctree::
    :maxdepth: 2
 
-Device Discovery with SYCL
+Device discovery with SYCL
 ==========================
 
 This example is based on the tutorial found in
