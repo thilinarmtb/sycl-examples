@@ -72,6 +72,6 @@ int main(int argc, char *argv[]) {
  *
  * \snippet{trimleft} 10-vector-add.cpp accessor
  *
- * Note that the device `accessor`s for `u` and `w` have the `read_only`
+ * Note that the device `accessor`s for `u` and `v` have the `read_only`
  * property where as the `accessor` for `w` has the `write_only` property.
  */
