@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   host_accessor acc{buf_v, read_only};
   //! [host_accessor]
   for (uint32_t i = 0; i < v.size(); i++)
-    std::cout << "i = " << i << ", " << acc[i] << std::endl;
+    assert(acc[i] == 42 && "Wrong value in v!");
 
   return 0;
 }
