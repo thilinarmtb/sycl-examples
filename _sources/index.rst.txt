@@ -5,6 +5,11 @@ Welcome to SYCL Examples' documentation !
 
 SYCL is a royalty-free, cross-platform, generic C++ programming model for
 heterogeneous computing :cite:`sycl_2020`.
+This is the accompanying documentation for the SYCL examples found in the
+sycl-examples_ repository.
+
+SYCL terminology
+----------------
 A *SYCL application* is a C++ application which uses the SYCL programming
 model and run on a host system (usually a CPU).
 SYCL is built on top of parallel programming models such as OpenCL
@@ -39,8 +44,9 @@ A *SYCL command queue* (or simply a *SYCL queue*) is an abstraction that is
 used to execute SYCL command groups using a SYCL runtime on a SYCL device.
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Table of Contents
+   :maxdepth: 1
+   :caption: Examples
+   :hidden:
 
    device-discovery
    vector-init
@@ -48,4 +54,8 @@ used to execute SYCL command groups using a SYCL runtime on a SYCL device.
    vector-add
    vector-reduce
 
+References
+----------
 .. bibliography::
+
+.. _sycl-examples: https://github.com/thilinarmtb/sycl-examples
