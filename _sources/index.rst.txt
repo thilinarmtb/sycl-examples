@@ -46,5 +46,6 @@ used to execute SYCL command groups using a SYCL runtime on a SYCL device.
    vector-init
    vector-init-refactored
    vector-add
+   vector-reduce
 
 .. bibliography::
