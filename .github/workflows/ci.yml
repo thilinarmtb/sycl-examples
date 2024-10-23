@@ -69,7 +69,7 @@ jobs:
         id: configure_and_build
         run: |
           source /opt/intel/oneapi/setvars.sh
-          ./configure -install-prefix ${SYCL_EXAMPLES_INSTALL_DIR} -enable-docs
+          ./configure -install-prefix ${SYCL_EXAMPLES_INSTALL_DIR} -enable-docs -build-type Debug
           ./sycl-examples -docs -install
       - name: Bypass Jekyll
         id: bypass_jekyll
