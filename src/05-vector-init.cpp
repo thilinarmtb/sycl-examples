@@ -6,7 +6,7 @@
 using namespace sycl;
 
 int main(int argc, char *argv[]) {
-  const uint32_t N = (argc > 1 ? atoi(argv[1]) : 1000);
+  const int32_t N = (argc > 1 ? atoi(argv[1]) : 1000);
   //! [create_host_vector]
   std::vector<int> v(N);
   //! [create_host_vector]
@@ -16,12 +16,12 @@ int main(int argc, char *argv[]) {
   //! [create_sycl_buffer]
 
   //! [create_command_group]
-  auto command_group = [&](handler &cgh) {
+  auto command_group = [&](handler &h) {
     //! [accessor]
-    accessor acc{buf_v, cgh, write_only, no_init};
+    accessor acc{buf_v, h, write_only, no_init};
     //! [accessor]
     //! [parallel_for]
-    cgh.parallel_for(range<1>(v.size()), [=](id<1> idx) { acc[idx] = 42; });
+    h.parallel_for(range<1>{v.size()}, [=](id<1> idx) { acc[idx] = 42; });
     //! [parallel_for]
   };
   //! [create_command_group]
@@ -40,8 +40,7 @@ int main(int argc, char *argv[]) {
   //! [host_accessor]
   host_accessor acc{buf_v, read_only};
   //! [host_accessor]
-  for (uint32_t i = 0; i < v.size(); i++)
-    assert(acc[i] == 42 && "Wrong value in v!");
+  for (int32_t i = 0; i < N; i++) assert(acc[i] == 42 && "Wrong value in v!");
 
   return 0;
 }
