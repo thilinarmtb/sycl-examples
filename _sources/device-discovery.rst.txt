@@ -3,8 +3,8 @@
 .. toctree::
    :maxdepth: 2
 
-Device discovery
-================
+Device discovery example
+========================
 
 This example is based on the tutorial found in
 :cite:`intel_device_discovery_with_sycl`.

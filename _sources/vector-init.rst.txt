@@ -1,10 +1,10 @@
-.. _vector_init_1:
+.. _vector_init:
 
 .. toctree::
    :maxdepth: 2
 
-Vector initialization kernel #1
-===============================
+Vector initialization example #1
+================================
 
 This example is based on the `Anatomy of a SYCL application` found in
 :cite:`sycl_2020` specification.

@@ -1,10 +1,10 @@
-.. _vector_init_2:
+.. _vector_init_refactored:
 
 .. toctree::
    :maxdepth: 2
 
-Vector initialization kernel #2
-===============================
+Vector initialization example #2
+================================
 
 .. doxygenpage:: page_vector_init_refactored
    :project: sycl-examples
