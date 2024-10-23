@@ -11,14 +11,13 @@ sycl-examples_ repository.
 SYCL terminology
 ----------------
 A *SYCL application* is a C++ application which uses the SYCL programming
-model and run on a host system (usually a CPU).
+model and run on a host system.
 SYCL is built on top of parallel programming models such as OpenCL
 :cite:`khronos_opencl_registry`, CUDA :cite:`nvidia_cuda_guide`, and HIP
-:cite:`amd_hip_guide` which are used for programming GPUs.
-These programming models are exposed as *SYCL backends* in a SYCL
-implementation :cite:`sycl_2020`.
-SYCL backend implementations extend the concepts found in these programming
-models and enable their use in modern C++ with *SYCL backend API*.
+:cite:`amd_hip_guide`.
+These programming models are exposed as *SYCL backends* :cite:`sycl_2020`.
+SYCL backend implementations are built on these programming models and
+enable their use in modern C++ with the *SYCL backend API*.
 
 A *SYCL device* is an abstraction of a piece of hardware that can be used by
 a SYCL application :cite:`sycl_2020`.
