@@ -45,7 +45,6 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// clang format off
 /**
  * \page page_vector_init Initialize a vector with SYCL
  *

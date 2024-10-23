@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
-// clang format off
 /**
  * \page page_vector_init_refactored Initialize a vector with SYCL
  *
