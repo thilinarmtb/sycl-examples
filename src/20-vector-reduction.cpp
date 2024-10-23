@@ -10,12 +10,12 @@ int main(int argc, char *argv[]) {
   const uint32_t N = T * 64;
 
   //! [create_host_vector]
-  std::vector<int32_t> v(N), partial_sum(T);
+  std::vector<uint32_t> v(N), partial_sum(T);
   //! [create_host_vector]
 
   //! [create_sycl_buffer]
-  buffer<int32_t, 1> buf_v{v.data(), range<1>{v.size()}};
-  buffer<int32_t, 1> buf_ps{partial_sum.data(), range<1>{partial_sum.size()}};
+  buffer<uint32_t, 1> buf_v{v.data(), range<1>{v.size()}};
+  buffer<uint32_t, 1> buf_ps{partial_sum.data(), range<1>{partial_sum.size()}};
   //! [create_sycl_buffer]
 
   //! [initialize_host_vector]
