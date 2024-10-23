@@ -3,8 +3,8 @@
 .. toctree::
    :maxdepth: 2
 
-Vector reduction example
-========================
+Vector reduction
+================
 
 This example is based on :cite:`intel_reduction_sycl`.
 

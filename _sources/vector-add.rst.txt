@@ -3,8 +3,8 @@
 .. toctree::
    :maxdepth: 2
 
-Vector addition example 
-=======================
+Vector addition
+===============
 
 .. doxygenpage:: page_vector_add
    :project: sycl-examples

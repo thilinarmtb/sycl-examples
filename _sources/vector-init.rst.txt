@@ -3,8 +3,8 @@
 .. toctree::
    :maxdepth: 2
 
-Vector initialization example #1
-================================
+Vector initialization #1
+========================
 
 This example is based on the `Anatomy of a SYCL application` found in
 :cite:`sycl_2020` specification.
