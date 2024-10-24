@@ -1,18 +1,18 @@
 #include <iostream>
 
-//! [include_sycl]
+//! [include_sycl_begin]
 #include <sycl/sycl.hpp>
-//! [include_sycl]
+//! [include_sycl_end]
 
-//! [using_namespace_sycl]
+//! [namespace_sycl_begin]
 using namespace sycl;
-//! [using_namespace_sycl]
+//! [namespace_sycl_end]
 
 int main(void) {
-  //! [iterate_through_platforms]
+  //! [iterate_platforms_begin]
   for (auto &platform : platform::get_platforms()) {
-    //! [iterate_through_platforms]
-    //! [print_platform_info]
+    //! [iterate_platforms_end]
+    //! [print_platform_info_begin]
     std::cout << "Platform: name = "
               << platform.get_info<info::platform::name>()
               << ", vendor = " << platform.get_info<info::platform::vendor>()
@@ -20,12 +20,12 @@ int main(void) {
               << detail::get_backend_name_no_vendor(platform.get_backend())
               << ", version = " << platform.get_info<info::platform::version>()
               << std::endl;
-    //! [print_platform_info]
+    //! [print_platform_info_end]
 
-    //! [iterate_through_devices]
+    //! [iterate_devices_begin]
     for (auto &device : platform.get_devices())
-      //! [iterate_through_devices]
-      //! [print_device_info]
+      //! [iterate_devices_end]
+      //! [print_device_info_begin]
       std::cout
           << "\tDevice: name = " << device.get_info<info::device::name>()
           << ", vendor = " << device.get_info<info::device::vendor>()
@@ -39,54 +39,8 @@ int main(void) {
           << ", "
           << device.get_info<info::device::max_work_item_sizes<3>>().get(2)
           << ">" << std::endl;
-    //! [print_device_info]
+    //! [print_device_info_end]
   }
 
   return 0;
 }
-
-// clang-format off
-/**
- * \page page_device_discovery Device discovery with SYCL
- *
- * This example illustrates how to use SYCL backend API to identify and query
- * information regarding the devices available for computing.
- * Full source code of the example is shown below:
- * \include 00-device-discovery.cpp
- *
- * We start by including the `sycl` header file which provides definition of
- * the SYCL backend API.
- * \snippet{trimleft} 00-device-discovery.cpp include_sycl
- * We then add the following line at the beginning of the source file to use
- * the `sycl::` namespace implicitly and reduce the amount of typing we have
- * to do bt avoiding the `sycl::` namespace prefix:
- * \snippet{trimleft} 00-device-discovery.cpp using_namespace_sycl
- *
- * `platform::get_platforms()` function returns a `std::vector` containing all
- * the available SYCL platforms in the system (host).
- * We first iterate through all the entries in that vector using the following
- * line:
- * \snippet{trimleft} 00-device-discovery.cpp iterate_through_platforms
- * We then query and print name, vendor, backend and version for each platform:
- * \snippet{trimleft} 00-device-discovery.cpp print_platform_info
- *
- * Then we iterate through all the devices in the current platform using
- * the `std::vector` returned from `platform.get_devices()` function:
- * \snippet{trimleft} 00-device-discovery.cpp iterate_through_devices
- * Similar to the platforms, we then print name, vendor, max compute
- * units, max work dimensions and maximum work items supported in each
- * dimension.
- * \snippet{trimleft} 00-device-discovery.cpp print_device_info
- *
- * Below is an example output of the above example running on a single node
- * of Aurora supercomputer at Argonne National Laboratory (ANL):
- * \verbatim
-   Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, backend = level_zero, version = 1.3
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3 <1024, 1024, 1024>
- \endverbatim
- */
