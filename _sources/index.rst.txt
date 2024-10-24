@@ -35,6 +35,7 @@ memory on the host and a SYCL backend :cite:`sycl_2020`.
 **SYCL buffers** and **SYCL accessors** are abstractions provided by the SYCL
 API for managing memory in a SYCL application (more details on buffers and
 accelerators are provided later in the examples).
+
 A **SYCL command group** contains the operations required to process data on a
 device and consists of a SYCL kernel function (or command group function)
 and SYCL accessors :cite:`sycl_2020`.
