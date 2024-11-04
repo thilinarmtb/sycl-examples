@@ -9,14 +9,28 @@
   <title>SYCL Examples &mdash; sycl-examples  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_lesson.css?v=e9df6548" />
+      <link rel="stylesheet" type="text/css" href="_static/term_role_formatting.css?v=4194e21c" />
       <link rel="stylesheet" type="text/css" href="_static/main_stylesheet.css?v=a6d91ecf" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/minipres.js?v=a0d29692"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -79,81 +93,138 @@
   <section id="sycl-examples">
 <h1>SYCL Examples<a class="headerlink" href="#sycl-examples" title="Link to this heading"></a></h1>
 <p>Welcome to SYCL Examples’ documentation !</p>
-<p>SYCL is a royalty-free, cross-platform, generic C++ programming model for
-heterogeneous computing <span id="id1">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+<p>SYCL is a royalty-free, cross-platform, generic (with templates and lambdas) C++
+programming model for heterogeneous parallel computing <span id="id1">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+The SYCL programming model provides an unified interface to program different
+hardware such as Central Processing Units (CPUs), Graphic Processing Units (GPUs),
+and Field Programmable Gate Arrays (FPGAs).</p>
+<p>The SYCL specification was developed by <a class="reference external" href="https://www.khronos.org">Khronos Group</a> as an
+effort to standardize the SYCL language.
+The latest SYCL specification can be found <a class="reference external" href="https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html">here</a>.
+All the SYCL implementations have to conform to the SYCL specification.
+A repository of conformance tests is also provided <a class="reference external" href="https://github.com/KhronosGroup/SYCL-CTS">here</a>.
+There are multiple SYCL implementations currently available like
+<a class="reference external" href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html#gs.hnnkqe">Intel OneAPI</a>, <a class="reference external" href="https://github.com/AdaptiveCpp/AdaptiveCpp">AdaptiveCpp</a>, and <a class="reference external" href="https://github.com/triSYCL/sycl">triSYCL</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The SYCL specification:</p>
+<ul class="simple">
+<li><p>Describes the structure of a SYCL application and the SYCL programming model.</p></li>
+<li><p>Defines the SYCL programming interface which provides a common abstracted
+feature set.</p></li>
+<li><p>Specifies the requirements for the SYCL device compiler implementation.</p></li>
+<li><p>Describes SYCL extensions by which the core SYCL specification can be extended.</p></li>
+</ul>
+</div>
+<p>In this tutorial, our main focus is programming Graphic Processing Units (GPUs)
+using <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html#gs.hnnkqe">Intel OneAPI</a> compiler.
 This website complements the SYCL examples found in the <a class="reference external" href="https://github.com/thilinarmtb/sycl-examples">sycl-examples</a>
-repository.</p>
+GitHub repository.
+This tutorial and the code in the repository are based on a few excellent
+tutorials found online:</p>
+<ul class="simple">
+<li><p><span id="id2">[<a class="reference internal" href="#id22" title="Roberto Di Remigio. SYCL Workshop: What is SYCL? 2021. Accessed: Nov 4, 2024. URL: https://enccs.github.io/sycl-workshop/what-is-sycl/.">Rem21</a>]</span>.</p></li>
+<li><p><span id="id3">[<a class="reference internal" href="#id23" title="Thomas Applencourt. \texttt sycltrain: a sycl training repository. 2021. GitHub repository. URL: https://github.com/TApplencourt/sycltrain.">App21</a>]</span>.</p></li>
+</ul>
 <section id="sycl-terminology">
 <h2>SYCL terminology<a class="headerlink" href="#sycl-terminology" title="Link to this heading"></a></h2>
+<p>We first look at a few important terms defined in the SYCL specification in order
+to introduce the main SYCL concepts.</p>
 <p>A <strong>SYCL application</strong> is a C++ application which uses the SYCL programming
 model.
-SYCL is built on top of parallel programming models such as OpenCL
-<span id="id2">[<a class="reference internal" href="#id16" title="Khronos Group. Opencl registry. 2024. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/OpenCL/.">KhronosGroup24</a>]</span>, CUDA <span id="id3">[<a class="reference internal" href="#id14" title="NVIDIA Corporation. Cuda c programming guide. 2024. Accessed: Oct 21, 2024. URL: https://docs.nvidia.com/cuda/cuda-c-programming-guide/.">NVIDIACorporation24</a>]</span>, and HIP
-<span id="id4">[<a class="reference internal" href="#id15" title="AMD. Hip documentation. 2024. Accessed: Oct 21, 2024. URL: https://rocm.docs.amd.com/projects/HIP/en/latest/.">AMD24</a>]</span>.
-These programming models are exposed as <strong>SYCL backends</strong> <span id="id5">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
-SYCL backend implementations are built on these programming models and
-enable their use in modern C++ applications through the <strong>SYCL backend API</strong>.</p>
+SYCL is built on top of low-level parallel programming models such as OpenCL
+<span id="id4">[<a class="reference internal" href="#id18" title="Khronos Group. Opencl registry. 2024. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/OpenCL/.">KhronosGroup24</a>]</span>, CUDA <span id="id5">[<a class="reference internal" href="#id16" title="NVIDIA Corporation. Cuda c programming guide. 2024. Accessed: Oct 21, 2024. URL: https://docs.nvidia.com/cuda/cuda-c-programming-guide/.">NVIDIACorporation24</a>]</span>, and HIP
+<span id="id6">[<a class="reference internal" href="#id17" title="AMD. Hip documentation. 2024. Accessed: Oct 21, 2024. URL: https://rocm.docs.amd.com/projects/HIP/en/latest/.">AMD24</a>]</span>.
+These low-level models are exposed to the user as <strong>SYCL backends</strong>
+<span id="id7">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+<strong>SYCL backend API</strong> exposes the SYCL backends and enable their use in modern
+C++ applications.</p>
 <p>A <strong>SYCL device</strong> is an abstraction of a piece of hardware that can be used by
-a SYCL application <span id="id6">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
-A function that can execute on a SYCL device exposed by the SYCL backend API is
-called a <strong>SYCL kernel function</strong> (or a SYCL kernel) <span id="id7">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+a SYCL application <span id="id8">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
 A <strong>SYCL platform</strong> is a collection of SYCL devices managed by a single SYCL
-backend <span id="id8">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+backend <span id="id9">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
 A <strong>SYCL context</strong> encapsulates the runtime data structures and states required
 by the SYCL API to interact with SYCL devices associated with a given
-SYCL platform.</p>
-<p><strong>SYCL runtime</strong> is an implementation of the SYCL API specification.
+SYCL platform.
+A function that can execute on a SYCL device exposed by the SYCL backend API is
+called a <strong>SYCL kernel function</strong> (or a <strong>SYCL kernel</strong>) <span id="id10">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.</p>
+<p>A <strong>SYCL runtime</strong> is an implementation of the SYCL API specification.
 SYCL API specification is used to manage SYCL platforms, devices, contexts and
-memory on the host and a SYCL backend <span id="id9">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+memory in a SYCL application <span id="id11">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
 <strong>SYCL buffers</strong> and <strong>SYCL accessors</strong> are abstractions provided by the SYCL
-API for managing memory in a SYCL application (more details on buffers and
+runtime API for managing memory in a SYCL application (more details on buffers and
 accelerators are provided later in the examples).</p>
 <p>A <strong>SYCL command group</strong> contains the operations required to process data on a
-device and consists of a SYCL kernel function (or command group function)
-and SYCL accessors <span id="id10">[<a class="reference internal" href="#id13" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
+SYCL device and consists of a SYCL kernel function and SYCL accessors
+<span id="id12">[<a class="reference internal" href="#id15" title="The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html.">TheKSWGroup20</a>]</span>.
 Each kernel is called with a <strong>SYCL command group handler</strong> object.
 SYCL command group handler provides an interface to execute commands on the
-device.
+given SYCL device.
 A <strong>SYCL command queue</strong> is an abstraction that is used to execute SYCL
-command groups using a SYCL runtime on a SYCL device.</p>
+command groups on a SYCL device.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="device-discovery.html"><span class="doc">Device discovery</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vector-init.html"><span class="doc">Vector initialization #1</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vector-init-refactored.html"><span class="doc">Vector initialization #2</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="vector-add.html"><span class="doc">Vector addition</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="vector-reduce.html"><span class="doc">Vector reduction</span></a></p></td>
+</tr>
+</tbody>
+</table>
 <div class="toctree-wrapper compound">
 </div>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
-<div class="docutils container" id="id11">
+<div class="docutils container" id="id13">
 <div role="list" class="citation-list">
-<div class="citation" id="id17" role="doc-biblioentry">
+<div class="citation" id="id23" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">App21</a><span class="fn-bracket">]</span></span>
+<p>Thomas Applencourt. \texttt sycltrain: a sycl training repository. 2021. GitHub repository. URL: <a class="reference external" href="https://github.com/TApplencourt/sycltrain">https://github.com/TApplencourt/sycltrain</a>.</p>
+</div>
+<div class="citation" id="id21" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>ENC21<span class="fn-bracket">]</span></span>
 <p>ENCCS. Sycl workshop: buffers and accessors. 2021. Accessed: Oct 22, 2024. URL: <a class="reference external" href="https://enccs.github.io/sycl-workshop/buffers-accessors/">https://enccs.github.io/sycl-workshop/buffers-accessors/</a>.</p>
 </div>
-<div class="citation" id="id18" role="doc-biblioentry">
+<div class="citation" id="id22" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">Rem21</a><span class="fn-bracket">]</span></span>
+<p>Roberto Di Remigio. SYCL Workshop: What is SYCL? 2021. Accessed: Nov 4, 2024. URL: <a class="reference external" href="https://enccs.github.io/sycl-workshop/what-is-sycl/">https://enccs.github.io/sycl-workshop/what-is-sycl/</a>.</p>
+</div>
+<div class="citation" id="id19" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>Sof<span class="fn-bracket">]</span></span>
 <p>Codeplay Software. Memory model - computecpp ce 2.11.0. Accessed: Oct 22, 2024. URL: <a class="reference external" href="https://developer.codeplay.com/products/computecpp/ce/2.11.0/guides/sycl-for-cuda-developers/memory-model">https://developer.codeplay.com/products/computecpp/ce/2.11.0/guides/sycl-for-cuda-developers/memory-model</a>.</p>
 </div>
-<div class="citation" id="id15" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">AMD24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id17" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">AMD24</a><span class="fn-bracket">]</span></span>
 <p>AMD. Hip documentation. 2024. Accessed: Oct 21, 2024. URL: <a class="reference external" href="https://rocm.docs.amd.com/projects/HIP/en/latest/">https://rocm.docs.amd.com/projects/HIP/en/latest/</a>.</p>
 </div>
-<div class="citation" id="id12" role="doc-biblioentry">
+<div class="citation" id="id14" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>IntelCorporation20<span class="fn-bracket">]</span></span>
 <p>Intel Corporation. Device discovery with sycl. 2020. Accessed: Oct 21, 2024. URL: <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/technical/device-discovery-with-sycl.html">https://www.intel.com/content/www/us/en/developer/articles/technical/device-discovery-with-sycl.html</a>.</p>
 </div>
-<div class="citation" id="id19" role="doc-biblioentry">
+<div class="citation" id="id20" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>IntelCorporation21<span class="fn-bracket">]</span></span>
 <p>Intel Corporation. Oneapi gpu optimization guide: reduction. 2021. Accessed: Oct 23, 2024. URL: <a class="reference external" href="https://www.intel.com/content/www/us/en/docs/oneapi/optimization-guide-gpu/2024-0/reduction.html">https://www.intel.com/content/www/us/en/docs/oneapi/optimization-guide-gpu/2024-0/reduction.html</a>.</p>
 </div>
-<div class="citation" id="id16" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">KhronosGroup24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id18" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">KhronosGroup24</a><span class="fn-bracket">]</span></span>
 <p>Khronos Group. Opencl registry. 2024. Accessed: Oct 21, 2024. URL: <a class="reference external" href="https://registry.khronos.org/OpenCL/">https://registry.khronos.org/OpenCL/</a>.</p>
 </div>
-<div class="citation" id="id14" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">NVIDIACorporation24</a><span class="fn-bracket">]</span></span>
+<div class="citation" id="id16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">NVIDIACorporation24</a><span class="fn-bracket">]</span></span>
 <p>NVIDIA Corporation. Cuda c programming guide. 2024. Accessed: Oct 21, 2024. URL: <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">https://docs.nvidia.com/cuda/cuda-c-programming-guide/</a>.</p>
 </div>
-<div class="citation" id="id13" role="doc-biblioentry">
+<div class="citation" id="id15" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>TheKSWGroup20<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id5">2</a>,<a role="doc-backlink" href="#id6">3</a>,<a role="doc-backlink" href="#id7">4</a>,<a role="doc-backlink" href="#id8">5</a>,<a role="doc-backlink" href="#id9">6</a>,<a role="doc-backlink" href="#id10">7</a>)</span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id7">2</a>,<a role="doc-backlink" href="#id8">3</a>,<a role="doc-backlink" href="#id9">4</a>,<a role="doc-backlink" href="#id10">5</a>,<a role="doc-backlink" href="#id11">6</a>,<a role="doc-backlink" href="#id12">7</a>)</span>
 <p>The Khronos SYCL Working Group. Sycl specification version 2020. 2020. Accessed: Oct 21, 2024. URL: <a class="reference external" href="https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html">https://registry.khronos.org/SYCL/specs/sycl-2020/html/sycl-2020.html</a>.</p>
 </div>
 </div>
