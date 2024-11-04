@@ -16,30 +16,26 @@ int main(void) {
     std::cout << "Platform: name = "
               << platform.get_info<info::platform::name>()
               << ", vendor = " << platform.get_info<info::platform::vendor>()
+              << ", version = " << platform.get_info<info::platform::version>()
+              << ", profile = " << platform.get_info<info::platform::profile>()
               << ", backend = "
               << detail::get_backend_name_no_vendor(platform.get_backend())
-              << ", version = " << platform.get_info<info::platform::version>()
               << std::endl;
     //! [print_platform_info_end]
 
     //! [iterate_devices_begin]
-    for (auto &device : platform.get_devices())
+    for (auto &device : platform.get_devices()) {
       //! [iterate_devices_end]
       //! [print_device_info_begin]
-      std::cout
-          << "\tDevice: name = " << device.get_info<info::device::name>()
-          << ", vendor = " << device.get_info<info::device::vendor>()
-          << ", max_compute_units = "
-          << device.get_info<info::device::max_compute_units>()
-          << ", max_work_item_dimensions = "
-          << device.get_info<info::device::max_work_item_dimensions>() << " <"
-          << device.get_info<info::device::max_work_item_sizes<3>>().get(0)
-          << ", "
-          << device.get_info<info::device::max_work_item_sizes<3>>().get(1)
-          << ", "
-          << device.get_info<info::device::max_work_item_sizes<3>>().get(2)
-          << ">" << std::endl;
-    //! [print_device_info_end]
+      std::cout << "\tDevice: name = " << device.get_info<info::device::name>()
+                << ", vendor = " << device.get_info<info::device::vendor>()
+                << ", max_compute_units = "
+                << device.get_info<info::device::max_compute_units>();
+      auto max_size = device.get_info<info::device::max_work_item_sizes<3>>();
+      std::cout << "<" << max_size[0] << ", " << max_size[1] << ", "
+                << max_size[2] << ">" << std::endl;
+      //! [print_device_info_end]
+    }
   }
 
   return 0;

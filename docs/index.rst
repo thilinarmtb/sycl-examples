@@ -83,7 +83,6 @@ Examples
 
 .. csv-table::
    :widths: auto
-   :delim: ;
 
    :doc:`device-discovery`
    :doc:`vector-init`
