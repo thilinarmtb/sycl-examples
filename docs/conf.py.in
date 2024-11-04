@@ -6,7 +6,7 @@ copyright = "2022, sycl-examples"
 author = "sycl-examples"
 
 # -- General configuration ---------------------------------------------------
-extensions = ["breathe", "sphinxcontrib.bibtex"]
+extensions = ["breathe", "sphinxcontrib.bibtex", "sphinx_lesson"]
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 

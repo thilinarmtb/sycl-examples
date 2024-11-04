@@ -1,4 +1,5 @@
 breathe==4.35
-sphinx==8.1.3
+sphinx==7.4.7
 sphinx-rtd-theme==3.0.1
 sphinxcontrib-bibtex==2.6.3
+sphinx-lesson==0.8.19
