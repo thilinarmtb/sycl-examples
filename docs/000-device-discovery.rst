@@ -16,7 +16,9 @@ Full source code of the example is shown below:
   :linenos:
 
 We start by including the ``sycl`` header file which provides definitions of
-the SYCL backend API.
+the SYCL API.
+This header file must be included in each translation unit which uses the
+SYCL API.
 
 .. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
@@ -24,8 +26,8 @@ the SYCL backend API.
   :end-before: include_sycl_end
   :dedent:
 
-The SYCL backend API functions and classes are inside the ``sycl::`` namespace
-and we have to access them with the prefix ``sycl::``.
+The SYCL API functions, constants, types and classes are inside the ``sycl::``
+namespace and we have to access them with the prefix ``sycl::``.
 So, we add the following line at the beginning of the source file to use
 the ``sycl::`` namespace implicitly and reduce the amount of typing we have
 to do:
@@ -72,9 +74,11 @@ Below is a list of all the parameter types supported by ``sycl::info::platform``
 namespace and their return type:
 
 .. csv-table::
+   :header-rows: 1
    :widths: auto
    :delim: ,
 
+   parameter, return type
    name, std::string
    vendor, std::string
    version, std::string
@@ -98,8 +102,10 @@ return types (don't worry about the unknown data types, we will cover them later
 
 .. csv-table::
    :widths: auto
+   :header-rows: 1
    :delim: ,
 
+   parameter, return type
    vendor_id, uint32_t
    max_compute_units, uint32_t
    max_work_item_dimensions, uint32_t
