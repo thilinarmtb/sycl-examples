@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
  * This example illustrates how to calculate the sum of a vector on a SYCL
  * device using the SYCL API.
  * Full source code of the example is shown below:
- * \include 20-vector-reduce.cpp
+ * \include 090-vector-reduce.cpp
  *
  * Vector reduction is different than the examples we considered so far as the
  * reduction kernel is inherently sequential.
@@ -72,23 +72,23 @@ int main(int argc, char *argv[]) {
  * In this example, we execute the reduction kernel with `T` work items
  * (or threads) on the array `v` of size `N = T * 64`.
  * Partial sums are stored in the array `partial_sum`.
- * \snippet{trimleft} 20-vector-reduce.cpp vector_size
+ * \snippet{trimleft} 090-vector-reduce.cpp vector_size
  *
  * So, each thread will sum up 64 elements of `v` and store those partial
  * sums in `partial_sum` array.
  * We declare the SYCL buffers to access both of those arrays here:
- * \snippet{trimleft} 20-vector-reduce.cpp create_sycl_buffer
+ * \snippet{trimleft} 090-vector-reduce.cpp create_sycl_buffer
  * and initialize the input vector `v` using a `host_accessor`:
- * \snippet{trimleft} 20-vector-reduce.cpp initialize_host_vector
+ * \snippet{trimleft} 090-vector-reduce.cpp initialize_host_vector
  *
  * During the kernel execution, SYCL backend will spawn `T` threads.
  * Each thread will then calculate the partial sum of a subset of threads
  * assigned to it.
  * Thread with id `t` will sum up all the array elements corresponding
  * to index set \f$\{i | i \equiv t \mod{T}\}\f$:
- * \snippet{trimleft} 20-vector-reduce.cpp kernel
+ * \snippet{trimleft} 090-vector-reduce.cpp kernel
  *
  * Once the kernel is completed, we calculate the final sum of the vector
  * elements by summing up the partial sums on the host:
- * \snippet{trimleft} 20-vector-reduce.cpp final_sum
+ * \snippet{trimleft} 090-vector-reduce.cpp final_sum
  */

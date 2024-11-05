@@ -51,11 +51,11 @@ int main(int argc, char *argv[]) {
  * This example illustrates how to run a simple vector initialization kernel
  * on a SYCL device using the SYCL API.
  * Full source code of the example is shown below:
- * \include 05-vector-init.cpp
+ * \include 030-vector-init.cpp
  *
  * We start by first creating a `std::vector` named `v` on the host with
  * uninitialized values:
- * \snippet{trimleft} 05-vector-init.cpp create_host_vector
+ * \snippet{trimleft} 030-vector-init.cpp create_host_vector
  *
  * Since we are initializing a vector using a SYCL kernel, we need to
  * manage memory on both the host and the device (including transfers
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
  * shown below.
  * In this case, we provide the host data pointer and a `sycl::range` that
  * defines the valid range of the data during the construction of the buffer.
- * \snippet{trimleft} 05-vector-init.cpp create_sycl_buffer
+ * \snippet{trimleft} 030-vector-init.cpp create_sycl_buffer
  *
  * Next we are going to create the command group which encompasses our
  * SYCL kernel.
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
  * `sycl::handler` object and callable with the `operator()`.
  * In this case, we define the function as a lambda so it is able to capture
  * the variables from the surrounding scope by reference.
- * \snippet{trimleft} 05-vector-init.cpp create_command_group
+ * \snippet{trimleft} 030-vector-init.cpp create_command_group
  *
  * In the body of the command group, we create an accessor to our buffer
  * object.
@@ -110,19 +110,19 @@ int main(int argc, char *argv[]) {
  * Since we don't provide any arguments to the constructor of the SYCL queue
  * object, it will use the default device in the default platform to execute
  * the command groups.
- * \snippet{trimleft} 05-vector-init.cpp create_queue
+ * \snippet{trimleft} 030-vector-init.cpp create_queue
  *
  * Once the queue is created, we can submit our command group by using the
  * `submit()` function.
- * \snippet{trimleft} 05-vector-init.cpp submit_command_group
+ * \snippet{trimleft} 030-vector-init.cpp submit_command_group
  * The SYCL runtime executes all the submitted command groups asynchronously.
  * So, we need to call the `wait()` function on the queue in order to make
  * sure that the our command group finished execution.
- * \snippet{trimleft} 05-vector-init.cpp sync_queue
+ * \snippet{trimleft} 030-vector-init.cpp sync_queue
  *
  * Once the kernel finished execution, we can use an `host_accessor` to access
  * the updated vector `v` on the host.
  * Here we create the accessor by passing `read_only` as we only need to read
  * the values of the vector.
- * \snippet{trimleft} 05-vector-init.cpp host_accessor
+ * \snippet{trimleft} 030-vector-init.cpp host_accessor
  */

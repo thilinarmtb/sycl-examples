@@ -51,17 +51,17 @@ int main(int argc, char *argv[]) {
  * This example illustrates how to execute a simple vector addition kernel on a
  * SYCL device using the SYCL API.
  * Full source code of the example is shown below:
- * \include 10-vector-add.cpp
+ * \include 060-vector-add.cpp
  *
  * This example is very similar to the vector initialization example except that
  * we now have three vectors.
  * We set the values of the vectors `u` and `v` on the host and then the SYCL
  * kernel store their sum on the vector `w`.
  * For the three vectors, we create three SYCL buffers:
- * \snippet{trimleft} 10-vector-add.cpp create_sycl_buffers
+ * \snippet{trimleft} 060-vector-add.cpp create_sycl_buffers
  *
  * Next we set the values of vectors `u` and `v` using `host_accessor`s:
- * \snippet{trimleft} 10-vector-add.cpp initialize_host_vectors
+ * \snippet{trimleft} 060-vector-add.cpp initialize_host_vectors
  * The braces (`{` and `}`) around this code block is necessary for the correct
  * execution of this program.
  * The braces make sure that the `host_accessor`s are destroyed when the program
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
  * and `v` in the command group will wait indefinitely causing the program to
  * hang:
  *
- * \snippet{trimleft} 10-vector-add.cpp accessor
+ * \snippet{trimleft} 060-vector-add.cpp accessor
  *
  * Note that the device `accessor`s for `u` and `v` have the `read_only`
  * property where as the `accessor` for `w` has the `write_only` property.

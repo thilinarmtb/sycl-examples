@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
  * kernel which demonstrate how the kernel would have been written in
  * practice.
  * Full source code of the example is shown below:
- * \include 05-vector-init-refactored.cpp
+ * \include 030-vector-init-refactored.cpp
  *
  * In this version, we don't use a dedicated variable to store the command
  * group lambda function as it can be directly passed into the `submit()`

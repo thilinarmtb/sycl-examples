@@ -11,14 +11,14 @@ illustrates how to use SYCL backend API to identify and query information
 regarding the devices available for computing.
 Full source code of the example is shown below:
 
-.. literalinclude:: ../src/00-device-discovery.cpp
+.. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
   :linenos:
 
 We start by including the ``sycl`` header file which provides definitions of
 the SYCL backend API.
 
-.. literalinclude:: ../src/00-device-discovery.cpp
+.. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
   :start-after: include_sycl_begin
   :end-before: include_sycl_end
@@ -30,7 +30,7 @@ So, we add the following line at the beginning of the source file to use
 the ``sycl::`` namespace implicitly and reduce the amount of typing we have
 to do:
 
-.. literalinclude:: ../src/00-device-discovery.cpp
+.. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
   :start-after: namespace_sycl_begin
   :end-before: namespace_sycl_end
@@ -41,7 +41,7 @@ all the available SYCL platforms in the system (note that a SYCL platform is
 a collection of SYCL devices managed by the same backend).
 We then iterate through all the platforms using the following for loop:
 
-.. literalinclude:: ../src/00-device-discovery.cpp
+.. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
   :start-after: iterate_platforms_begin
   :end-before: iterate_platforms_end
@@ -50,7 +50,7 @@ We then iterate through all the platforms using the following for loop:
 We query and print name, vendor, version and backend name for each platform
 using the ``get_info()`` (templated) method of the ``platform`` class.
 
-.. literalinclude:: ../src/00-device-discovery.cpp
+.. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
   :start-after: print_platform_info_begin
   :end-before: print_platform_info_end
@@ -85,7 +85,7 @@ We then print name, vendor, max compute units and maximum work items
 supported in each dimension (we will explain what these mean later)
 for each device:
 
-.. literalinclude:: ../src/00-device-discovery.cpp
+.. literalinclude:: ../src/000-device-discovery.cpp
   :language: cpp
   :start-after: iterate_devices_begin
   :end-before: iterate_devices_end
