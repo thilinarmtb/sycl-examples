@@ -14,20 +14,30 @@ as it was just querying about the available SYCL platforms and the SYCL devices.
 Remember from our earlier discussion that we need to submit SYCL kernels into a
 SYCL queue.
 SYCL provides several constructors to create customized queues.
-Below is an incomplete list of the constructors available for the ``sycl::queue``
+Below is one of the constructors available for the ``sycl::queue``
 class (copy pasted from the Intel oneAPI implementation of the SYCL standard):
 
 .. code:: c++
 
-  /// Constructs a SYCL queue instance using the device returned by an instance
-  ///
-  /// of default_selector.
-  /// PropList is a list of properties for queue construction.
-  queue(const property_list &PropList = {});
+  queue(const property_list &prop_list = {});
 
-  /// Constructs a SYCL queue instance with an async_handler using the device
-  /// returned by an instance of default_selector.
-  ///
-  /// AsyncHandler is a SYCL asynchronous exception handler.
-  /// PropList is a list of properties for queue construction.
-  queue(const async_handler &AsyncHandler, const property_list &PropList = {});
+Here ``prop_list`` is a list of properties used for the queue construction.
+Below is a list of all the properties supported by the Intel oneAPI compiler.
+The properties under the ``sycl::ext::oneapi::`` namespace are intel oneAPI
+extensions.
+
+.. csv-table::
+   :widths: auto
+   :header-rows: 1
+   :delim: ,
+
+   namespace, property
+   property::queue, in_order
+   property::queue, enable_profiling
+   ext::oneapi::property::queue, discard_events
+   ext::oneapi::property::queue, priority_normal
+   ext::oneapi::property::queue, priority_low
+   ext::oneapi::property::queue, priority_high
+   ext::intel::property::queue, no_immediate_command_list
+   ext::intel::property::queue, immediate_command_list
+   ext::oneapi::cuda::property::queue, use_default_stream

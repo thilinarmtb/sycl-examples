@@ -33,7 +33,8 @@
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Device discovery" href="000-device-discovery.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,8 +57,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="000-device-discovery.html">Device discovery</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hello World</a></li>
 </ul>
 
         </div>
@@ -95,28 +97,59 @@ as it was just querying about the available SYCL platforms and the SYCL devices.
 <p>Remember from our earlier discussion that we need to submit SYCL kernels into a
 SYCL queue.
 SYCL provides several constructors to create customized queues.
-Below is an incomplete list of the constructors available for the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code>
+Below is one of the constructors available for the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code>
 class (copy pasted from the Intel oneAPI implementation of the SYCL standard):</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Constructs a SYCL queue instance using the device returned by an instance</span>
-<span class="c1">///</span>
-<span class="c1">/// of default_selector.</span>
-<span class="c1">/// PropList is a list of properties for queue construction.</span>
-<span class="n">queue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">property_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{});</span>
-
-<span class="c1">/// Constructs a SYCL queue instance with an async_handler using the device</span>
-<span class="c1">/// returned by an instance of default_selector.</span>
-<span class="c1">///</span>
-<span class="c1">/// AsyncHandler is a SYCL asynchronous exception handler.</span>
-<span class="c1">/// PropList is a list of properties for queue construction.</span>
-<span class="n">queue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">async_handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AsyncHandler</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">property_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{});</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">queue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">property_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prop_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{});</span>
 </pre></div>
 </div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">prop_list</span></code> is a list of properties used for the queue construction.
+Below is a list of all the properties supported by the Intel oneAPI compiler.
+The properties under the <code class="docutils literal notranslate"><span class="pre">sycl::ext::oneapi::</span></code> namespace are intel oneAPI
+extensions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>namespace</p></th>
+<th class="head"><p>property</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>property::queue</p></td>
+<td><p>in_order</p></td>
+</tr>
+<tr class="row-odd"><td><p>property::queue</p></td>
+<td><p>enable_profiling</p></td>
+</tr>
+<tr class="row-even"><td><p>ext::oneapi::property::queue</p></td>
+<td><p>discard_events</p></td>
+</tr>
+<tr class="row-odd"><td><p>ext::oneapi::property::queue</p></td>
+<td><p>priority_normal</p></td>
+</tr>
+<tr class="row-even"><td><p>ext::oneapi::property::queue</p></td>
+<td><p>priority_low</p></td>
+</tr>
+<tr class="row-odd"><td><p>ext::oneapi::property::queue</p></td>
+<td><p>priority_high</p></td>
+</tr>
+<tr class="row-even"><td><p>ext::intel::property::queue</p></td>
+<td><p>no_immediate_command_list</p></td>
+</tr>
+<tr class="row-odd"><td><p>ext::intel::property::queue</p></td>
+<td><p>immediate_command_list</p></td>
+</tr>
+<tr class="row-even"><td><p>ext::oneapi::cuda::property::queue</p></td>
+<td><p>use_default_stream</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="000-device-discovery.html" class="btn btn-neutral float-left" title="Device discovery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

@@ -92,6 +92,7 @@ Examples
    :hidden:
 
    000-device-discovery
+   010-hello-world
 
 References
 ----------
