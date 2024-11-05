@@ -3,27 +3,33 @@
 .. toctree::
    :maxdepth: 2
 
-Hello World
-===========
+Hello world !
+=============
 
 In this example, we are going to run a very simple SYCL kernel on a SYCL device
 on your system using the SYCL programming model.
 Previous device discovery example didn't execute anything on a SYCL device
 as it was just querying about the available SYCL platforms and the SYCL devices.
+The complete source code for the hello world example is shown below.
+
+.. literalinclude:: ../src/010-hello-world.cpp
+  :language: cpp
+  :linenos:
 
 Remember from our earlier discussion that we need to submit SYCL kernels into a
-SYCL queue.
+SYCL queue in order for them to be executed.
 SYCL provides several constructors to create customized queues.
-Below is one of the constructors available for the ``sycl::queue``
-class (copy pasted from the Intel oneAPI implementation of the SYCL standard):
+
+Below is one of the constructors available for the ``sycl::queue`` class (copy
+pasted from the Intel oneAPI implementation of the SYCL standard).
+Here ``prop_list`` is a list of optional properties used for the queue construction.
 
 .. code:: c++
 
   queue(const property_list &prop_list = {});
 
-Here ``prop_list`` is a list of properties used for the queue construction.
 Below is a list of all the properties supported by the Intel oneAPI compiler.
-The properties under the ``sycl::ext::oneapi::`` namespace are intel oneAPI
+The properties under the ``sycl::ext::oneapi::`` namespace are Intel oneAPI
 extensions.
 
 .. csv-table::
@@ -41,3 +47,12 @@ extensions.
    ext::intel::property::queue, no_immediate_command_list
    ext::intel::property::queue, immediate_command_list
    ext::oneapi::cuda::property::queue, use_default_stream
+
+We pass ``sycl::property::queue::in_order`` and
+``sycl::property::queue::enable_profiling`` to our queue constructor.
+
+.. literalinclude:: ../src/010-hello-world.cpp
+  :language: cpp
+  :start-after: include_sycl_begin
+  :end-before: include_sycl_end
+  :dedent:

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World &mdash; sycl-examples  documentation</title>
+  <title>Hello world ! &mdash; sycl-examples  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -59,7 +59,7 @@
               <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="000-device-discovery.html">Device discovery</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hello World</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hello world !</a></li>
 </ul>
 
         </div>
@@ -76,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Hello World</li>
+      <li class="breadcrumb-item active">Hello world !</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/010-hello-world.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,22 +89,48 @@
   <div class="toctree-wrapper compound" id="hello-world">
 </div>
 <section id="id1">
-<h1>Hello World<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<h1>Hello world !<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>In this example, we are going to run a very simple SYCL kernel on a SYCL device
 on your system using the SYCL programming model.
 Previous device discovery example didn’t execute anything on a SYCL device
-as it was just querying about the available SYCL platforms and the SYCL devices.</p>
+as it was just querying about the available SYCL platforms and the SYCL devices.
+The complete source code for the hello world example is shown below.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sycl/sycl.hpp&gt;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">sycl</span><span class="p">;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="c1">//! [queue_with_properties_begin]</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">property_list</span><span class="w"> </span><span class="n">q_props</span><span class="p">{</span><span class="n">property</span><span class="o">::</span><span class="n">queue</span><span class="o">::</span><span class="n">in_order</span><span class="p">(),</span>
+<span class="linenos">10</span><span class="w">                        </span><span class="n">property</span><span class="o">::</span><span class="n">queue</span><span class="o">::</span><span class="n">enable_profiling</span><span class="p">()};</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">queue</span><span class="w">   </span><span class="n">q</span><span class="p">{</span><span class="n">q_props</span><span class="p">};</span>
+<span class="linenos">12</span><span class="w">  </span><span class="c1">//! [queue_with_properties_end]</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Running on &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">get_device</span><span class="p">().</span><span class="n">get_info</span><span class="o">&lt;</span><span class="n">info</span><span class="o">::</span><span class="n">device</span><span class="o">::</span><span class="n">name</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="linenos">15</span><span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ...&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">  </span><span class="n">q</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">18</span><span class="w">     </span><span class="n">ext</span><span class="o">::</span><span class="n">oneapi</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello from rank = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="linenos">19</span><span class="w">                                       </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">idx</span><span class="p">));</span>
+<span class="linenos">20</span><span class="w">   </span><span class="p">}).</span><span class="n">wait</span><span class="p">();</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">23</span><span class="p">}</span>
+</pre></div>
+</div>
 <p>Remember from our earlier discussion that we need to submit SYCL kernels into a
-SYCL queue.
-SYCL provides several constructors to create customized queues.
-Below is one of the constructors available for the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code>
-class (copy pasted from the Intel oneAPI implementation of the SYCL standard):</p>
+SYCL queue in order for them to be executed.
+SYCL provides several constructors to create customized queues.</p>
+<p>Below is one of the constructors available for the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code> class (copy
+pasted from the Intel oneAPI implementation of the SYCL standard).
+Here <code class="docutils literal notranslate"><span class="pre">prop_list</span></code> is a list of optional properties used for the queue construction.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">queue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">property_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">prop_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{});</span>
 </pre></div>
 </div>
-<p>Here <code class="docutils literal notranslate"><span class="pre">prop_list</span></code> is a list of properties used for the queue construction.
-Below is a list of all the properties supported by the Intel oneAPI compiler.
-The properties under the <code class="docutils literal notranslate"><span class="pre">sycl::ext::oneapi::</span></code> namespace are intel oneAPI
+<p>Below is a list of all the properties supported by the Intel oneAPI compiler.
+The properties under the <code class="docutils literal notranslate"><span class="pre">sycl::ext::oneapi::</span></code> namespace are Intel oneAPI
 extensions.</p>
 <table class="docutils align-default">
 <thead>
@@ -142,6 +168,8 @@ extensions.</p>
 </tr>
 </tbody>
 </table>
+<p>We pass <code class="docutils literal notranslate"><span class="pre">sycl::property::queue::in_order</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sycl::property::queue::enable_profiling</span></code> to our queue constructor.</p>
 </section>
 
 
