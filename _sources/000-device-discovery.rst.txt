@@ -74,9 +74,11 @@ Below is a list of all the parameter types supported by ``sycl::info::platform``
 namespace and their return type:
 
 .. csv-table::
+   :header-rows: 1
    :widths: auto
    :delim: ,
 
+   parameter, return type
    name, std::string
    vendor, std::string
    version, std::string
@@ -100,8 +102,10 @@ return types (don't worry about the unknown data types, we will cover them later
 
 .. csv-table::
    :widths: auto
+   :header-rows: 1
    :delim: ,
 
+   parameter, return type
    vendor_id, uint32_t
    max_compute_units, uint32_t
    max_work_item_dimensions, uint32_t
