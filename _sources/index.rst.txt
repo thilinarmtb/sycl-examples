@@ -84,22 +84,14 @@ Examples
 .. csv-table::
    :widths: auto
 
-   :doc:`device-discovery`
-   :doc:`vector-init`
-   :doc:`vector-init-refactored`
-   :doc:`vector-add`
-   :doc:`vector-reduce`
+   :doc:`000-device-discovery`
 
 .. toctree::
    :maxdepth: 1
    :caption: Examples
    :hidden:
 
-   device-discovery
-   vector-init
-   vector-init-refactored
-   vector-add
-   vector-reduce
+   000-device-discovery
 
 References
 ----------
