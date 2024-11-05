@@ -78,7 +78,6 @@ namespace and their return type:
    name, std::string
    vendor, std::string
    version, std::string
-   profile, std::string
 
 Next we iterate through all the devices in the current platform using
 the ``std::vector`` returned from ``platform.get_devices()`` method.
@@ -138,7 +137,6 @@ return types (don't worry about the unknown data types, we will cover them later
    name, std::string
    vendor, std::string
    driver_version, std::string
-   profile, std::string
    version, std::string
    backend_version, std::string
    printf_buffer_size, size_t
@@ -152,10 +150,10 @@ Therefore, we see information regarding all the 6 when we run the
 
 .. code:: console
 
-   Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, backend = level_zero, version = 1.3
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, <1024, 1024, 1024>
-           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, <1024, 1024, 1024>
+   Platform: name = Intel(R) Level-Zero, vendor = Intel(R) Corporation, version = 1.5, backend = level_zero
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3, max_work_item_sizes = <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3, max_work_item_sizes = <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3, max_work_item_sizes = <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3, max_work_item_sizes = <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3, max_work_item_sizes = <1024, 1024, 1024>
+           Device: name = Intel(R) Data Center GPU Max 1550, vendor = Intel(R) Corporation, max_compute_units = 896, max_work_item_dimensions = 3, max_work_item_sizes = <1024, 1024, 1024>
