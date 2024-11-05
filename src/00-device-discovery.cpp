@@ -25,8 +25,6 @@ int main(void) {
 
     //! [iterate_devices_begin]
     for (auto &device : platform.get_devices()) {
-      //! [iterate_devices_end]
-      //! [print_device_info_begin]
       std::cout << "\tDevice: name = " << device.get_info<info::device::name>()
                 << ", vendor = " << device.get_info<info::device::vendor>()
                 << ", max_compute_units = "
@@ -34,8 +32,8 @@ int main(void) {
       auto max_size = device.get_info<info::device::max_work_item_sizes<3>>();
       std::cout << "<" << max_size[0] << ", " << max_size[1] << ", "
                 << max_size[2] << ">" << std::endl;
-      //! [print_device_info_end]
     }
+    //! [iterate_devices_end]
   }
 
   return 0;
