@@ -108,18 +108,24 @@ The complete source code for the hello world example is shown below.</p>
 <span class="linenos">11</span><span class="w">  </span><span class="n">sycl</span><span class="o">::</span><span class="n">queue</span><span class="w">   </span><span class="n">q</span><span class="p">{</span><span class="n">q_props</span><span class="p">};</span>
 <span class="linenos">12</span><span class="w">  </span><span class="c1">//! [queue_with_properties_end]</span>
 <span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">  </span><span class="c1">//! [submit_hello_world_begin]</span>
-<span class="linenos">15</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">16</span><span class="w">    </span><span class="n">ext</span><span class="o">::</span><span class="n">oneapi</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello from rank = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="linenos">17</span><span class="w">  </span><span class="p">};</span>
-<span class="linenos">18</span><span class="w">  </span><span class="n">q</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">({</span><span class="n">N</span><span class="p">},</span><span class="w"> </span><span class="n">kernel</span><span class="p">).</span><span class="n">wait</span><span class="p">();</span>
-<span class="linenos">19</span><span class="w">  </span><span class="c1">//! [submit_hello_world_end]</span>
-<span class="linenos">20</span>
-<span class="linenos">21</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The kernel executed on: &quot;</span>
-<span class="linenos">22</span><span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">get_device</span><span class="p">().</span><span class="n">get_info</span><span class="o">&lt;</span><span class="n">info</span><span class="o">::</span><span class="n">device</span><span class="o">::</span><span class="n">name</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="linenos">23</span>
-<span class="linenos">24</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="linenos">25</span><span class="p">}</span>
+<span class="linenos">14</span><span class="w">  </span><span class="c1">//! [iteration_domain_begin]</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">iter_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">N</span><span class="p">};</span>
+<span class="linenos">16</span><span class="w">  </span><span class="c1">//! [iteration_domain_end]</span>
+<span class="linenos">17</span><span class="w">  </span><span class="c1">//! [kernel_begin]</span>
+<span class="linenos">18</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">item</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">ext</span><span class="o">::</span><span class="n">oneapi</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello from rank = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="linenos">20</span><span class="w">  </span><span class="p">};</span>
+<span class="linenos">21</span><span class="w">  </span><span class="c1">//! [kernel_end]</span>
+<span class="linenos">22</span><span class="w">  </span><span class="c1">//! [submit_begin]</span>
+<span class="linenos">23</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span><span class="n">iter_domain</span><span class="p">,</span><span class="w"> </span><span class="n">kernel</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">  </span><span class="n">event</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+<span class="linenos">25</span><span class="w">  </span><span class="c1">//! [submit_end]</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The kernel executed on: &quot;</span>
+<span class="linenos">28</span><span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">get_device</span><span class="p">().</span><span class="n">get_info</span><span class="o">&lt;</span><span class="n">info</span><span class="o">::</span><span class="n">device</span><span class="o">::</span><span class="n">name</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">31</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Remember from our earlier discussion that we need to submit SYCL kernels into a
@@ -184,19 +190,34 @@ call their constructor when adding them to the <cite>sycl::property_list`</cite>
 <span class="n">sycl</span><span class="o">::</span><span class="n">queue</span><span class="w">   </span><span class="n">q</span><span class="p">{</span><span class="n">q_props</span><span class="p">};</span>
 </pre></div>
 </div>
-<p>Then we use the <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> method of <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code> to submit our SYCL
+<p>Next we use the <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> method of <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code> to submit our SYCL
 kernel for execution on the SYCL device.
-As the name implies, <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> method runs a typical <code class="docutils literal notranslate"><span class="pre">for</span></code> loop
-in parallel (where each for iterate is executed in parallel).
-In our hello world example, <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> methods take in a <cite>sycl::range`</cite>
-and a SYCL kernel in the forms of a C++ lambda function and returns a <cite>sycl::event</cite>.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">ext</span><span class="o">::</span><span class="n">oneapi</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello from rank = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="p">};</span>
-<span class="n">q</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">({</span><span class="n">N</span><span class="p">},</span><span class="w"> </span><span class="n">kernel</span><span class="p">).</span><span class="n">wait</span><span class="p">();</span>
+As the name implies, <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> method acts as a typical <code class="docutils literal notranslate"><span class="pre">for</span></code> loop
+except that all the loop iterates are done in parallel.
+The iteration domain or the range is represented by a <code class="docutils literal notranslate"><span class="pre">sycl::range&lt;N&gt;</span></code> object
+where the parameter <code class="docutils literal notranslate"><span class="pre">N</span></code> should equal 1, 2, or 3.
+For our simple hello world kernel, we only need a single dimensional iteration
+domain.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">iter_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">{</span><span class="n">N</span><span class="p">};</span>
 </pre></div>
 </div>
-<p>Note that we haven’t specified what types of device</p>
+<p><code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> method also accepts the code to be executed at each for iterate
+as a C++ lambda function.
+This function must be parameterized by a <code class="docutils literal notranslate"><span class="pre">sycl::item&lt;N&gt;</span></code> object to identify the
+execution instance at each point of the <code class="docutils literal notranslate"><span class="pre">sycl::range&lt;N&gt;</span></code>.
+We print the index of the for execution instance inside the kernel by calling
+the <code class="docutils literal notranslate"><span class="pre">printf</span></code> function provided as an experimental extension of the oneAPI compiler.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="n">sycl</span><span class="o">::</span><span class="n">item</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ext</span><span class="o">::</span><span class="n">oneapi</span><span class="o">::</span><span class="n">experimental</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello from rank = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Finally, we submit (dispatch) the kernel to the queue for execution.
+The <code class="docutils literal notranslate"><span class="pre">parallel_for</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">sycl::event</span></code> object.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="n">parallel_for</span><span class="p">(</span><span class="n">iter_domain</span><span class="p">,</span><span class="w"> </span><span class="n">kernel</span><span class="p">);</span>
+<span class="n">event</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+</pre></div>
+</div>
 </section>
 
 

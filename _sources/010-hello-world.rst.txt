@@ -63,17 +63,39 @@ call their constructor when adding them to the `sycl::property_list``.
   :end-before: queue_with_properties_end
   :dedent:
 
-Then we use the ``parallel_for`` method of ``sycl::queue`` to submit our SYCL
+Next we use the ``parallel_for`` method of ``sycl::queue`` to submit our SYCL
 kernel for execution on the SYCL device.
-As the name implies, ``parallel_for`` method runs a typical ``for`` loop
-in parallel (where each for iterate is executed in parallel).
-In our hello world example, ``parallel_for`` methods take in a `sycl::range``
-and a SYCL kernel in the forms of a C++ lambda function and returns a `sycl::event`.
+As the name implies, ``parallel_for`` method acts as a typical ``for`` loop
+except that all the loop iterates are done in parallel.
+The iteration domain or the range is represented by a ``sycl::range<N>`` object
+where the parameter ``N`` should equal 1, 2, or 3.
+For our simple hello world kernel, we only need a single dimensional iteration
+domain.
 
 .. literalinclude:: ../src/010-hello-world.cpp
   :language: cpp
-  :start-after: submit_hello_world_begin
-  :end-before: submit_hello_world_end
+  :start-after: iteration_domain_begin
+  :end-before: iteration_domain_end
   :dedent:
 
-Note that we haven't specified what types of device
+``parallel_for`` method also accepts the code to be executed at each for iterate
+as a C++ lambda function.
+This function must be parameterized by a ``sycl::item<N>`` object to identify the
+execution instance at each point of the ``sycl::range<N>``.
+We print the index of the for execution instance inside the kernel by calling
+the ``printf`` function provided as an experimental extension of the oneAPI compiler.
+
+.. literalinclude:: ../src/010-hello-world.cpp
+  :language: cpp
+  :start-after: kernel_begin
+  :end-before: kernel_end
+  :dedent:
+
+Finally, we submit (dispatch) the kernel to the queue for execution.
+The ``parallel_for`` method returns a ``sycl::event`` object.
+
+.. literalinclude:: ../src/010-hello-world.cpp
+  :language: cpp
+  :start-after: submit_begin
+  :end-before: submit_end
+  :dedent:
