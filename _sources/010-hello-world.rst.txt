@@ -92,10 +92,29 @@ the ``printf`` function provided as an experimental extension of the oneAPI comp
   :dedent:
 
 Finally, we submit (dispatch) the kernel to the queue for execution.
-The ``parallel_for`` method returns a ``sycl::event`` object.
+The ``parallel_for`` method returns a ``sycl::event`` object after that submission
+of the kernel.
+In this particular case, ``sycl::event`` object represents the status of the kernel
+that is being executed by the SYCL runtime.
+Since the SYCL queues execute kernels asynchronously, we can use the `wait()``
+method of ``sycl::event`` object to wait till kernel completed.
 
 .. literalinclude:: ../src/010-hello-world.cpp
   :language: cpp
   :start-after: submit_begin
   :end-before: submit_end
+  :dedent:
+
+Note that we didn't specify a SYCL device for the queue we created.
+In this case, SYCL runtime chooses a default device.
+We can get the ``sycl::device`` associated with the queue using ``get_device()``
+method the queue.
+At the end of our example, we print the name of the device associated with the
+queue.
+We will see later how to select a device when constructing a queue.
+
+.. literalinclude:: ../src/010-hello-world.cpp
+  :language: cpp
+  :start-after: print_device_begin
+  :end-before: print_device_end
   :dedent:
