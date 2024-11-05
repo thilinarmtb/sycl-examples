@@ -19,7 +19,6 @@ The complete source code for the hello world example is shown below.
 Remember from our earlier discussion that we need to submit SYCL kernels into a
 SYCL queue in order for them to be executed.
 SYCL provides several constructors to create customized queues.
-
 Below is one of the constructors available for the ``sycl::queue`` class (copy
 pasted from the Intel oneAPI implementation of the SYCL standard).
 Here ``prop_list`` is a list of optional properties used for the queue construction.
@@ -50,9 +49,31 @@ extensions.
 
 We pass ``sycl::property::queue::in_order`` and
 ``sycl::property::queue::enable_profiling`` to our queue constructor.
+The ``enable_profiling`` property instructs the SYCL runtime to capture profiling
+information for the kernels that are submitted to the queue.
+We will see later how to query these profiling information.
+The ``in_order`` property instructs SYCL runtime to schedule the SYCL kernels
+in-order they are submitted to the queue.
+Note that these properties are implemented as C++ classes and hence we need to
+call their constructor when adding them to the `sycl::property_list``.
 
 .. literalinclude:: ../src/010-hello-world.cpp
   :language: cpp
-  :start-after: include_sycl_begin
-  :end-before: include_sycl_end
+  :start-after: queue_with_properties_begin
+  :end-before: queue_with_properties_end
   :dedent:
+
+Then we use the ``parallel_for`` method of ``sycl::queue`` to submit our SYCL
+kernel for execution on the SYCL device.
+As the name implies, ``parallel_for`` method runs a typical ``for`` loop
+in parallel (where each for iterate is executed in parallel).
+In our hello world example, ``parallel_for`` methods take in a `sycl::range``
+and a SYCL kernel in the forms of a C++ lambda function and returns a `sycl::event`.
+
+.. literalinclude:: ../src/010-hello-world.cpp
+  :language: cpp
+  :start-after: submit_hello_world_begin
+  :end-before: submit_hello_world_end
+  :dedent:
+
+Note that we haven't specified what types of device
