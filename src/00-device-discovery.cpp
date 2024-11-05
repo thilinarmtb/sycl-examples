@@ -17,7 +17,6 @@ int main(void) {
               << platform.get_info<info::platform::name>()
               << ", vendor = " << platform.get_info<info::platform::vendor>()
               << ", version = " << platform.get_info<info::platform::version>()
-              << ", profile = " << platform.get_info<info::platform::profile>()
               << ", backend = "
               << detail::get_backend_name_no_vendor(platform.get_backend())
               << std::endl;
@@ -28,10 +27,13 @@ int main(void) {
       std::cout << "\tDevice: name = " << device.get_info<info::device::name>()
                 << ", vendor = " << device.get_info<info::device::vendor>()
                 << ", max_compute_units = "
-                << device.get_info<info::device::max_compute_units>();
+                << device.get_info<info::device::max_compute_units>()
+                << ", max_work_item_dimensions = "
+                << device.get_info<info::device::max_work_item_dimensions>();
+
       auto max_size = device.get_info<info::device::max_work_item_sizes<3>>();
-      std::cout << "<" << max_size[0] << ", " << max_size[1] << ", "
-                << max_size[2] << ">" << std::endl;
+      std::cout << ", max_work_item_sizes = <" << max_size[0] << ", "
+                << max_size[1] << ", " << max_size[2] << ">" << std::endl;
     }
     //! [iterate_devices_end]
   }
