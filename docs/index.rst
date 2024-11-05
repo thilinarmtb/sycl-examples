@@ -75,8 +75,8 @@ SYCL device and consists of a SYCL kernel function and SYCL accessors
 Each kernel is called with a **SYCL command group handler** object.
 SYCL command group handler provides an interface to execute commands on the
 given SYCL device.
-A **SYCL command queue** is an abstraction that is used to execute SYCL
-command groups on a SYCL device.
+A **SYCL command queue** (or simply **SYCL queue**) is an abstraction that is
+used to execute SYCL command groups on a SYCL device.
 
 Examples
 --------
@@ -92,6 +92,7 @@ Examples
    :hidden:
 
    000-device-discovery
+   010-hello-world
 
 References
 ----------
