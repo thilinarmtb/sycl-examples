@@ -7,15 +7,15 @@ Hello World
 ===========
 
 In this example, we are going to run a very simple SYCL kernel on a SYCL device
-available on our system using the SYCL programming model.
-Previous device discovery program didn't execute anything on a SYCL device
-as it was just querying about the available SYCL platforms and the SYCL devices
-belonging to them (remember from our earlier discussion that we need to submit SYCL
-kernels into a SYCL queue).
+on your system using the SYCL programming model.
+Previous device discovery example didn't execute anything on a SYCL device
+as it was just querying about the available SYCL platforms and the SYCL devices.
 
-SYCL provides an extensive API to create queues with the desired properties.
-Below is an incomplete list of the constructors provided for the ``sycl::queue``
-class (quoted from the Intel oneAPI implementation of the SYCL standard):
+Remember from our earlier discussion that we need to submit SYCL kernels into a
+SYCL queue.
+SYCL provides several constructors to create customized queues.
+Below is an incomplete list of the constructors available for the ``sycl::queue``
+class (copy pasted from the Intel oneAPI implementation of the SYCL standard):
 
 .. code:: c++
 
@@ -31,18 +31,3 @@ class (quoted from the Intel oneAPI implementation of the SYCL standard):
   /// AsyncHandler is a SYCL asynchronous exception handler.
   /// PropList is a list of properties for queue construction.
   queue(const async_handler &AsyncHandler, const property_list &PropList = {});
-
-  /// Constructs a SYCL queue instance using the device identified by the
-  /// device selector provided.
-  ///
-  /// \param DeviceSelector is SYCL 2020 Device Selector, a simple callable that
-  /// takes a device and returns an int
-  /// \param AsyncHandler is a SYCL asynchronous exception handler.
-  /// \param PropList is a list of properties for queue construction.
-  template <typename DeviceSelector,
-            typename =
-                detail::EnableIfSYCL2020DeviceSelectorInvocable<DeviceSelector>>
-  explicit queue(const DeviceSelector &deviceSelector,
-                 const async_handler &AsyncHandler,
-                 const property_list &PropList = {})
-      : queue(detail::select_device(deviceSelector), AsyncHandler, PropList) {}

@@ -89,14 +89,14 @@
 <section id="id1">
 <h1>Hello World<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>In this example, we are going to run a very simple SYCL kernel on a SYCL device
-available on our system using the SYCL programming model.
-Previous device discovery program didn’t execute anything on a SYCL device
-as it was just querying about the available SYCL platforms and the SYCL devices
-belonging to them (remember from our earlier discussion that we need to submit SYCL
-kernels into a SYCL queue).</p>
-<p>SYCL provides an extensive API to create queues with the desired properties.
-Below is an incomplete list of the constructors provided for the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code>
-class (quoted from the Intel oneAPI implementation of the SYCL standard):</p>
+on your system using the SYCL programming model.
+Previous device discovery example didn’t execute anything on a SYCL device
+as it was just querying about the available SYCL platforms and the SYCL devices.</p>
+<p>Remember from our earlier discussion that we need to submit SYCL kernels into a
+SYCL queue.
+SYCL provides several constructors to create customized queues.
+Below is an incomplete list of the constructors available for the <code class="docutils literal notranslate"><span class="pre">sycl::queue</span></code>
+class (copy pasted from the Intel oneAPI implementation of the SYCL standard):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Constructs a SYCL queue instance using the device returned by an instance</span>
 <span class="c1">///</span>
 <span class="c1">/// of default_selector.</span>
@@ -109,21 +109,6 @@ class (quoted from the Intel oneAPI implementation of the SYCL standard):</p>
 <span class="c1">/// AsyncHandler is a SYCL asynchronous exception handler.</span>
 <span class="c1">/// PropList is a list of properties for queue construction.</span>
 <span class="n">queue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">async_handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AsyncHandler</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">property_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{});</span>
-
-<span class="c1">/// Constructs a SYCL queue instance using the device identified by the</span>
-<span class="c1">/// device selector provided.</span>
-<span class="c1">///</span>
-<span class="c1">/// \param DeviceSelector is SYCL 2020 Device Selector, a simple callable that</span>
-<span class="c1">/// takes a device and returns an int</span>
-<span class="c1">/// \param AsyncHandler is a SYCL asynchronous exception handler.</span>
-<span class="c1">/// \param PropList is a list of properties for queue construction.</span>
-<span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">DeviceSelector</span><span class="p">,</span>
-<span class="w">          </span><span class="k">typename</span><span class="w"> </span><span class="o">=</span>
-<span class="w">              </span><span class="n">detail</span><span class="o">::</span><span class="n">EnableIfSYCL2020DeviceSelectorInvocable</span><span class="o">&lt;</span><span class="n">DeviceSelector</span><span class="o">&gt;&gt;</span>
-<span class="k">explicit</span><span class="w"> </span><span class="n">queue</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DeviceSelector</span><span class="w"> </span><span class="o">&amp;</span><span class="n">deviceSelector</span><span class="p">,</span>
-<span class="w">               </span><span class="k">const</span><span class="w"> </span><span class="n">async_handler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">AsyncHandler</span><span class="p">,</span>
-<span class="w">               </span><span class="k">const</span><span class="w"> </span><span class="n">property_list</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">queue</span><span class="p">(</span><span class="n">detail</span><span class="o">::</span><span class="n">select_device</span><span class="p">(</span><span class="n">deviceSelector</span><span class="p">),</span><span class="w"> </span><span class="n">AsyncHandler</span><span class="p">,</span><span class="w"> </span><span class="n">PropList</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 </section>

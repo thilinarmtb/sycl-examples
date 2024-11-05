@@ -138,12 +138,14 @@ Full source code of the example is shown below:</p>
 </pre></div>
 </div>
 <p>We start by including the <code class="docutils literal notranslate"><span class="pre">sycl</span></code> header file which provides definitions of
-the SYCL backend API.</p>
+the SYCL API.
+This header file must be included in each translation unit which uses the
+SYCL API.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sycl/sycl.hpp&gt;</span>
 </pre></div>
 </div>
-<p>The SYCL backend API functions and classes are inside the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code> namespace
-and we have to access them with the prefix <code class="docutils literal notranslate"><span class="pre">sycl::</span></code>.
+<p>The SYCL API functions, constants, types and classes are inside the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code>
+namespace and we have to access them with the prefix <code class="docutils literal notranslate"><span class="pre">sycl::</span></code>.
 So, we add the following line at the beginning of the source file to use
 the <code class="docutils literal notranslate"><span class="pre">sycl::</span></code> namespace implicitly and reduce the amount of typing we have
 to do:</p>
